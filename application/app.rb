@@ -6,7 +6,8 @@ require 'slim'
 module ThxSeafood
   # Web App
   class App < Roda
-    plugin :render, engine: 'slim', views: 'presentation/views'
+    # plugin :render, engine: 'slim', views: 'presentation/views'
+    plugin :render, views: 'presentation/views'
     plugin :assets, css: 'style.css', path: 'presentation/assets'
 
     route do |routing|
