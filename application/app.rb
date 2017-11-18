@@ -15,9 +15,9 @@ module ThxSeafood
 
       # GET / request
       routing.root do
-        repos_json = ApiGateway.new.all_jobs
-        all_jobs = CodePraise::JobsRepresenter.new(OpenStruct.new)
-                                                .from_json repos_json
+        jobs_json = ApiGateway.new.all_jobs
+        all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new)
+                                                .from_json jobs_json
         view 'home', locals: { jobs: all_jobs.jobs }
       end
 
