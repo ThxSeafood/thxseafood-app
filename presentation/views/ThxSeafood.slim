@@ -1,0 +1,154 @@
+doctype html
+html lang="en" 
+  head
+    meta charset="utf-8" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    meta content="" name="description" /
+    meta content="" name="author" /
+    title ThxSeafood Admin
+    link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" /
+    link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" rel="stylesheet" /
+    script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    link href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common-material.min.css" rel="stylesheet" /
+    link href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.material.min.css" rel="stylesheet" /
+    link href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.material.mobile.min.css" rel="stylesheet" /
+    script src="https://kendo.cdn.telerik.com/2017.3.1026/js/jquery.min.js" 
+    script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js" 
+  body
+    #wrapper
+      nav.navbar.navbar-default.navbar-static-top role="navigation" style=("margin-bottom: 0") 
+        ul.nav.navbar-top-links.navbar-right
+      #page-wrapper width="80%" 
+        .row
+          .col-lg-12
+            
+        .row
+          .col-lg-6.col-md-6
+            .panel.panel-primary
+              .panel-heading
+                .row
+                  .col-xs-3
+                    i.fa.fa-comments.fa-5x
+                  .col-xs-9.text-right
+                    .huge
+                    div New Comments!
+              a href="#" 
+              .panel-footer
+                span.pull-left View Details
+                span.pull-right
+                  i.fa.fa-arrow-circle-right
+                .clearfix
+          .col-lg-6.col-md-6
+            .panel.panel-success
+              .panel-heading
+                .row
+                  .col-xs-3
+                    i.fa.fa-tasks.fa-5x
+                  .col-xs-9.text-right
+                    .huge
+                    div New Tasks!
+              a href="#" 
+              .panel-footer
+                span.pull-left View Details
+                span.pull-right
+                  i.fa.fa-arrow-circle-right
+                .clearfix
+        .row
+          .col-lg-8
+            .panel.panel-default
+              .panel-heading
+                i.fa.fa-bar-chart-o.fa-fw
+                | ChatBox Record
+                .pull-right
+                  .btn-group
+              .panel-body
+                .row
+                  .col-lg-8
+                    table class="table" id="repos_table" height="50%"
+                      thead
+                        tr
+                          th Repo Name
+                          th Github URL
+                          th Contributors
+                      tbody
+                        - jobs.each do |job|
+                          tr
+                            td
+                              = job.name
+                            td
+                              = job.link
+                            td
+                              = job.company
+          
+      javascript:
+        
+            | var jobRecord ;
+            
+                  | $(document).ready(function() {
+                            | $("#grid").kendoGrid({
+                                | dataSource: {
+                                    | data: jobRecord,
+                                    | schema: {
+                                        | model: {
+                                            | fields: {
+                                               
+                                                | J: { type: "string" },
+                                                | JOB: { type: "string" },
+                                                | NAME: { type: "string" }
+                                            | }
+                                        | }
+                                    | },
+                                    | pageSize: 20
+                                | },
+                                | height: 550,
+                                
+                                | scrollable: true,
+                                | sortable: true,
+                                | filterable: true,
+                                | pageable: {
+                                    | input: true,
+                                    | numeric: false
+                                | },
+                                | columns: [
+                                    
+                                    | { field: "J", title: "ID", width: "130px" },
+                                    | { field: "JOB", title: "JOB", width: "130px" },
+                                    | { field: "NAME",title: "NAME", width: "130px" }
+                                | ]
+                            | });
+                        | });
+                        
+                         | $(document).ready(function() {
+                            | $("#grid2").kendoGrid({
+                                | dataSource: {
+                                    | data: jobRecord,
+                                    | schema: {
+                                        | model: {
+                                            | fields: {
+                                               
+                                                | J: { type: "string" },
+                                                | JOB: { type: "string" },
+                                                | NAME: { type: "string" }
+                                            | }
+                                        | }
+                                    | },
+                                    | pageSize: 20
+                                | },
+                                | height: 550,
+                                
+                                | scrollable: true,
+                                | sortable: true,
+                                | filterable: true,
+                                | pageable: {
+                                    | input: true,
+                                    | numeric: false
+                                | },
+                                | columns: [
+                                    
+                                    | { field: "J", title: "ID", width: "130px" },
+                                    | { field: "JOB", title: "JOB", width: "130px" },
+                                    | { field: "NAME",title: "NAME", width: "130px" }
+                                | ]
+                            | });
+                        | });

@@ -6,8 +6,8 @@ require 'slim'
 module ThxSeafood
   # Web App
   class App < Roda
-    # plugin :render, engine: 'slim', views: 'presentation/views'
-    plugin :render, views: 'presentation/views'
+    plugin :render, engine: 'slim', views: 'presentation/views'
+    # plugin :render, views: 'presentation/views'
     plugin :assets, css: 'style.css', path: 'presentation/assets'
 
     route do |routing|
@@ -17,9 +17,9 @@ module ThxSeafood
       # GET / request
       routing.root do
         jobs_json = ApiGateway.new.all_jobs
-        all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new)
-                                                .from_json jobs_json
-        view 'home', locals: { jobs: all_jobs.jobs }
+        all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new).from_json jobs_json
+        view 'ThxSeafood', locals: { jobs: all_jobs.jobs }
+        # view 'home', locals: { jobs_json: jobs_json }
       end
 
       # routing.on 'repo' do
