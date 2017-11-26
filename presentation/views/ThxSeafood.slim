@@ -65,12 +65,12 @@ html lang="en"
               .panel-body
                 .row
                   .col-lg-8
-                    table class="table" id="repos_table" height="50%"
+                    table class="table" id="jobs_table" height="50%"
                       thead
                         tr
-                          th Repo Name
-                          th Github URL
-                          th Contributors
+                          th NAME
+                          th LINK
+                          th COMPANY
                       tbody
                         - jobs.each do |job|
                           tr
@@ -81,74 +81,3 @@ html lang="en"
                             td
                               = job.company
           
-      javascript:
-        
-            | var jobRecord ;
-            
-                  | $(document).ready(function() {
-                            | $("#grid").kendoGrid({
-                                | dataSource: {
-                                    | data: jobRecord,
-                                    | schema: {
-                                        | model: {
-                                            | fields: {
-                                               
-                                                | J: { type: "string" },
-                                                | JOB: { type: "string" },
-                                                | NAME: { type: "string" }
-                                            | }
-                                        | }
-                                    | },
-                                    | pageSize: 20
-                                | },
-                                | height: 550,
-                                
-                                | scrollable: true,
-                                | sortable: true,
-                                | filterable: true,
-                                | pageable: {
-                                    | input: true,
-                                    | numeric: false
-                                | },
-                                | columns: [
-                                    
-                                    | { field: "J", title: "ID", width: "130px" },
-                                    | { field: "JOB", title: "JOB", width: "130px" },
-                                    | { field: "NAME",title: "NAME", width: "130px" }
-                                | ]
-                            | });
-                        | });
-                        
-                         | $(document).ready(function() {
-                            | $("#grid2").kendoGrid({
-                                | dataSource: {
-                                    | data: jobRecord,
-                                    | schema: {
-                                        | model: {
-                                            | fields: {
-                                               
-                                                | J: { type: "string" },
-                                                | JOB: { type: "string" },
-                                                | NAME: { type: "string" }
-                                            | }
-                                        | }
-                                    | },
-                                    | pageSize: 20
-                                | },
-                                | height: 550,
-                                
-                                | scrollable: true,
-                                | sortable: true,
-                                | filterable: true,
-                                | pageable: {
-                                    | input: true,
-                                    | numeric: false
-                                | },
-                                | columns: [
-                                    
-                                    | { field: "J", title: "ID", width: "130px" },
-                                    | { field: "JOB", title: "JOB", width: "130px" },
-                                    | { field: "NAME",title: "NAME", width: "130px" }
-                                | ]
-                            | });
-                        | });
