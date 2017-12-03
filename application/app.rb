@@ -2,6 +2,8 @@
 
 require 'roda'
 require 'slim'
+require 'slim/include'
+
 
 module ThxSeafood
   # Web App
@@ -9,6 +11,8 @@ module ThxSeafood
     plugin :render, engine: 'slim', views: 'presentation/views'
     # plugin :render, views: 'presentation/views'
     plugin :assets, css: 'style.css', path: 'presentation/assets'
+    plugin :flash
+    use Rack::Session::Cookie, secret: config.SESSION_SECRET
 
     route do |routing|
       routing.assets
@@ -18,6 +22,13 @@ module ThxSeafood
       routing.root do
         jobs_json = ApiGateway.new.all_jobs
         all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new).from_json jobs_json
+        projects = Views::AllProjects.new(all_jobs)
+        if projects.none?
+          flash.now[:error] = 'No data in databse.'
+        end
+        if projects.any?
+          flash.now[:notice] = 'Data is showing below'
+        end
         view 'ThxSeafood', locals: { jobs: all_jobs.jobs }
         # view 'home', locals: { jobs_json: jobs_json }
       end
