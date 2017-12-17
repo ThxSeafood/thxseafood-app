@@ -10,7 +10,8 @@ require 'headless'
 #       Run XQuartz before trying Headless on MacOS
 
 require './init.rb'   # to call API infrastructure helpers
-
+require 'page-object'
+require_relative 'pages/init'
 HOST = 'http://localhost:9292'
 
 # Helper methods
