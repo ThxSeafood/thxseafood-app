@@ -19,7 +19,9 @@ module ThxSeafood
     def create_jobs(jobname)
       call_api(:post, ['jobs', jobname])
     end
-
+    def delete_all_jobs
+      call_api(:delete, 'jobs')
+    end
     def call_api(method, resources)
       url_route = [@config.api_url, resources].flatten.join'/'
 
