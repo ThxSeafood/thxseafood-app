@@ -9,15 +9,15 @@ module ThxSeafood
       end
 
       def none?
-        @all_jobs.job.none?
+        @all_jobs.jobs.none?
       end
 
       def any?
-        @all_jobs.job.any?
+        @all_jobs.jobs.any?
       end
 
       def collection
-        @all_jobs.job.map { |job| Project.new(job) }
+        @all_jobs.jobs.map { |job| Project.new(job) }
       end
     end
   end

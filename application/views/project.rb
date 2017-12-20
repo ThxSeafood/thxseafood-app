@@ -8,19 +8,41 @@ module ThxSeafood
         @job= job
       end
 
-      def NAME
+      def name
         @job.name
       end
 
-      def LINK
+      def link
         @job.link
       end
 
-      def COMPANY
+      def company
         job.company
       end
 
+      def lng
+        @job.lon
+      end
+      
+      def lat
+        @job.lat
+      end
 
+      def address
+        @job.address
+      end
+
+      def addr_no_descript
+        @job.addr_no_descript
+      end
+
+      def description
+        @job.description
+      end
+
+      def user_query
+        @job.user_query
+      end
     end
   end
 end
