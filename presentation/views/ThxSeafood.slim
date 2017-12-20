@@ -72,7 +72,7 @@ html lang="en"
                           th LINK
                           th COMPANY
                       tbody
-                        - jobs.each do |job|
+                        - projects.collection.each do |job|
                           tr
                             td
                               = job.name

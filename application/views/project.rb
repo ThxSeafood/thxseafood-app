@@ -17,7 +17,7 @@ module ThxSeafood
       end
 
       def company
-        job.company
+        @job.company
       end
 
       def lng

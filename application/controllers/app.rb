@@ -29,8 +29,8 @@ module ThxSeafood
         if projects.any?
           flash.now[:notice] = 'Data is showing below'
         end
-        view 'jobmap', locals: { projects: projects }
-        # view 'ThxSeafood', locals: { projects: projects }
+        # view 'jobmap', locals: { projects: projects }
+        view 'ThxSeafood', locals: { projects: projects }
         # view 'home', locals: { jobs_json: jobs_json }
       end
 
@@ -61,7 +61,8 @@ module ThxSeafood
             if projects.any?
               flash.now[:notice] = 'Data is showing below'
             end
-            view 'jobmap', locals: { projects: projects }
+            view 'ThxSeafood', locals: { projects: projects }
+            # view 'jobmap', locals: { projects: projects }
           end
         end
       end

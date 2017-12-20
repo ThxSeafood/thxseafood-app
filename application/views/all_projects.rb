@@ -5,7 +5,7 @@ module ThxSeafood
     # View object for colelction of Github projects
     class AllProjects
       def initialize(all_jobs)
-        @all_jobs = all_repos
+        @all_jobs = all_jobs
       end
 
       def none?
