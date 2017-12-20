@@ -18,10 +18,19 @@ head
 .container[style="height:100%"]
   .row
     formrole="form" action="/jobs" method='post' id='key_search_form'
-      |  Enter Search Term:
-      br
-      input[name="searchterm" type="text"id='key_input' class="form-control"]
-      input[type="submit" id="key_submit"value="Search"]
+      .col-xs-2
+        .text-right Github URL:
+      .col-xs-8
+        input{ 
+          type='text' name='url'
+          id='key_input' class="form-control"
+          
+        } 
+      .col-xs-2
+        button{ 
+            type='submit' id='key_submit' name='repo_form_submit'
+            value='submit' class='btn btn-success submit'
+          } + search
   .row
   #map[style="height:80%"]
 javascript:
