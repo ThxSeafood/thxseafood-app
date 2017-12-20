@@ -1,0 +1,94 @@
+doctype html
+html lang="en" 
+head
+  meta charset="utf-8" /
+  meta content="IE=edge" http-equiv="X-UA-Compatible" /
+  meta content="width=device-width, initial-scale=1" name="viewport" /
+  meta content="" name="description" /
+  meta content="" name="author" /
+  title ThxSeafood Admin
+  script[src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"]
+
+  link[rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"]
+  link[rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"]
+  script[src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"]
+  script[async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNju8hi-1PgBY2geJOPV5GdZAtrnJ21TQ&callback=initMap"]
+
+
+.container[style="height:100%"]
+  .row
+    form[action="/jobs" method="POST"]
+      |  Enter Search Term:
+      br
+      input[name="searchterm" type="text"]
+      input[type="submit" value="Search"]
+  .row
+  #map[style="height:80%"]
+javascript:
+function initMap() {
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 6,
+    center: {
+      lat: 23.902167,
+      lng: 121.056650
+      
+    }
+  });
+  var infoWin = new google.maps.InfoWindow();
+  
+  var markers = locations.map(function(location, i) {
+    var marker = new google.maps.Marker({
+      position: location
+    });
+    google.maps.event.addListener(marker, 'click', function(evt) {
+      infoWin.setContent("<a href="+location.info+">"+location.company+"</a>");
+      infoWin.open(map, marker);
+    })
+    return marker;
+  });
+  var markerCluster = new MarkerClusterer(map, markers, {
+    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+  });
+
+}
+var locations="#{projects.collection}"
+var locations2 = [{
+  
+  lat: -19.9286,
+  lng: -43.93888,
+  info: "marker 1",
+  company:"boss"
+}, {
+  lat: -19.85758,
+  lng: -43.9668,
+  info: "marker 2",
+  company:"boss"
+}, {
+  lat: -18.24587,
+  lng: -43.59613,
+  info: "marker 3",
+  company:"boss"
+}, {
+  lat: -20.46427,
+  lng: -45.42629,
+  info: "marker 4",
+  company:"boss"
+}, {
+  lat: -20.37817,
+  lng: -43.41641,
+  info: "marker 5",
+  company:"boss"
+}, {
+  lat: -20.09749,
+  lng: -43.48831,
+  info: "marker 6",
+  company:"boss"
+}, {
+  lat: -21.13594,
+  lng: -44.26132,
+  info: "marker 7"
+  ,company:"boss"
+}, ];
+
+google.maps.event.addDomListener(window, "load", initMap);
