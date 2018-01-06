@@ -16,6 +16,7 @@ desc 'rerun tests'
 task :respec do
   sh "rerun -c 'rake spec' --ignore 'coverage/*'"
 end
+
 namespace :run do
   task :dev do
     sh 'rerun -c "rackup -p 9090"'

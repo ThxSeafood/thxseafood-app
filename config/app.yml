@@ -1,5 +1,15 @@
 ---
 development:
-  api_url: https://thx-seafood.herokuapp.com/api/v0.1
-  # api_url: http://localhost:3030/api/v0.1
-  # api_url: https://localhost:9292/api/v0.1
+  API_HOST: http://localhost:3030 
+  API_VER: api/v0.1
+
+test:
+  API_HOST: http://localhost:3000 
+  API_VER: api/v0.1
+  APP_URL: http://localhost:9000
+
+production:
+  API_HOST: https://thx-seafood.herokuapp.com/
+  API_VER: api/v0.1
+  # APP_URL: 還沒deploy
+

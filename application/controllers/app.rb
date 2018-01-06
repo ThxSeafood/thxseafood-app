@@ -20,7 +20,7 @@ module ThxSeafood
 
       # GET / request
       routing.root do
-        jobs_json = ApiGateway.new.all_jobs   # String
+        jobs_json = ApiGateway.new.all_jobs.message   # String
         all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new).from_json jobs_json
         all_jobs_json = ThxSeafood::JobsRepresenter.new(all_jobs).to_json   # String
 
@@ -68,6 +68,24 @@ module ThxSeafood
         #     view 'jobmap', locals: { projects: projects }
         #   end
         # end
+      end
+
+
+      routing.on 'hot' do
+        # GET /hot/:topnum
+        routing.get String do |topnum|
+          result = ApiGateway.new.get_top_jobs(topnum)
+          view_info = { result: result }
+
+          if result.processing?
+            view_info[:processing] = Views::ProcessingView.new(result)
+            flash.now[:notice] = 'Hot jobs being processed'
+          end
+
+          view 'hot_job', locals: view_info
+
+        end
+      
       end
 
     end

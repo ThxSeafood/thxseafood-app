@@ -24,8 +24,8 @@ head
     .col-sm-9 
       #map[style="height:700px;width:100%"]
     .col-sm-2 
-      form[action="/jobs" method="POST"]
-        select[name="searchterm" style="width:100%"type="select"]
+      form role="form" action="/hot/7" method='get' 
+        select { name= "searchterm" style = "width:100%"  class ="form-control" onchange="this.form.submit()"}
           option value="3"  3
           option value="4"  4
           option value="5"  5
@@ -35,7 +35,7 @@ head
           option value="9"  9
           option value="10"  10
     .col-sm-1
-        input[type="submit" value="Search"]
+        input{type = "submit" value = "Search"}
   / .row
   /   .col-lg-8
   /     table class="table" id="jobs_table" height="30%"overflow-y="true"
