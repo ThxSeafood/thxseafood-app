@@ -39,35 +39,35 @@ module ThxSeafood
 
 
       routing.on 'jobs' do
-        routing.is do
-          routing.post do            
-            result = AddProject.new.call(query: routing.params)
+        # routing.is do
+        #   routing.post do            
+        #     result = AddProject.new.call(query: routing.params)
 
-            if result.success?
-              flash[:notice] = 'New project added!'
-            else
-              flash[:error] = result.value
-            end
+        #     if result.success?
+        #       flash[:notice] = 'New project added!'
+        #     else
+        #       flash[:error] = result.value
+        #     end
 
-            routing.redirect "/#{routing.params}"
-          end
-        end
+        #     routing.redirect "/#{routing.params}"
+        #   end
+        # end
 
-        routing.on String do |query|
-          routing.get do
-            jobs_json = ApiGateway.new.jobs(query)
-            all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new).from_json jobs_json
-            projects = Views::AllProjects.new(all_jobs)
-            if projects.none?
-              flash.now[:error] = 'No data in databse.'
-            end
-            if projects.any?
-              flash.now[:notice] = 'Data is showing below'
-            end
-            # view 'ThxSeafood', locals: { projects: projects }
-            view 'jobmap', locals: { projects: projects }
-          end
-        end
+        # routing.on String do |query|
+        #   routing.get do
+        #     jobs_json = ApiGateway.new.jobs(query)
+        #     all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new).from_json jobs_json
+        #     projects = Views::AllProjects.new(all_jobs)
+        #     if projects.none?
+        #       flash.now[:error] = 'No data in databse.'
+        #     end
+        #     if projects.any?
+        #       flash.now[:notice] = 'Data is showing below'
+        #     end
+        #     # view 'ThxSeafood', locals: { projects: projects }
+        #     view 'jobmap', locals: { projects: projects }
+        #   end
+        # end
       end
 
     end
