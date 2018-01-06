@@ -20,17 +20,20 @@ module ThxSeafood
 
       # GET / request
       routing.root do
-        jobs_json = ApiGateway.new.all_jobs
+        jobs_json = ApiGateway.new.all_jobs   # String
         all_jobs = ThxSeafood::JobsRepresenter.new(OpenStruct.new).from_json jobs_json
-        projects = Views::AllProjects.new(all_jobs)
+        all_jobs_json = ThxSeafood::JobsRepresenter.new(all_jobs).to_json   # String
+
+        # projects = Views::AllProjects.new(all_jobs)
+        projects = Views::JsonAllProjects.new(all_jobs_json)
         if projects.none?
           flash.now[:error] = 'No data in databse.'
         end
         if projects.any?
           flash.now[:notice] = 'Data is showing below'
         end
-        # view 'jobmap', locals: { projects: projects }
-        view 'ThxSeafood', locals: { projects: projects }
+        view 'jobmap', locals: { projects: projects }
+        # view 'ThxSeafood', locals: { projects: projects }
         # view 'home', locals: { jobs_json: jobs_json }
       end
 
@@ -61,8 +64,8 @@ module ThxSeafood
             if projects.any?
               flash.now[:notice] = 'Data is showing below'
             end
-            view 'ThxSeafood', locals: { projects: projects }
-            # view 'jobmap', locals: { projects: projects }
+            # view 'ThxSeafood', locals: { projects: projects }
+            view 'jobmap', locals: { projects: projects }
           end
         end
       end

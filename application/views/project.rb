@@ -21,7 +21,7 @@ module ThxSeafood
       end
 
       def lng
-        @job.lon
+        @job.lng
       end
       
       def lat
@@ -36,13 +36,14 @@ module ThxSeafood
         @job.addr_no_descript
       end
 
-      def description
-        @job.description
-      end
+      # def description
+      #   @job.description
+      # end
 
       def user_query
         @job.user_query
       end
+
     end
   end
 end

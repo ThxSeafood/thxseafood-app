@@ -11,11 +11,11 @@ module ThxSeafood
     property :name
     property :link
     property :company
-    property :lon
-    property :lat
     property :address
     property :addr_no_descript
-    property :description
+    # property :description
     property :user_query
+    property :lng
+    property :lat
   end
 end
