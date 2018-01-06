@@ -14,30 +14,64 @@ head
 
 
 .container[style="height:100%"]
+  / .row
+  /   form[action="/jobs" method="POST"]
+  /     |  Enter Search Term:
+  /     br
+  /     input[name="searchterm" type="text"]
+  /     input[type="submit" value="Search"]
   .row
-    form[action="/jobs" method="POST"]
-      |  Enter Search Term:
-      br
-      input[name="searchterm" type="text"]
-      input[type="submit" value="Search"]
-  .row
-      #map[style="height:500px;width:500px"]
+    .col-sm-9 
+      #map[style="height:700px;width:100%"]
+    .col-sm-2 
+      form[action="/jobs" method="POST"]
+        select[name="searchterm" style="width:100%"type="select"]
+          option value="3"  3
+          option value="4"  4
+          option value="5"  5
+          option value="6"  6
+          option value="7"  7
+          option value="8"  8
+          option value="9"  9
+          option value="10"  10
+    .col-sm-1
+        input[type="submit" value="Search"]
+  / .row
+  /   .col-lg-8
+  /     table class="table" id="jobs_table" height="30%"overflow-y="true"
+  /       thead
+  /         tr
+  /           th NAME
+  /           th LINK
+  /           th COMPANY
+  /       tbody
+  /         - projects.collection.each do |job|
+  /           tr
+  /             td
+  /               = job.name
+  /             td
+  /               = job.link
+  /             td
+  /               = job.company
 ruby:
   locations = projects.getString
 javascript: 
     function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {zoom: 6,center: {lat: 23.902167,lng: 121.056650}});
+      var map = new google.maps.Map(document.getElementById('map'), {zoom: 8,center: {lat: 23.715344,lng: 121.056650}});
       var infoWin = new google.maps.InfoWindow();
       var markers = locations.map(function(location, i) {
         var marker = new google.maps.Marker({
          position: location
         });
         google.maps.event.addListener(marker, 'click', function(evt) {
-          infoWin.setContent("<a href="+location.info+">"+location.company+"</a>");
+          infoWin.setContent("<a href="+location.link+">"+location.company+"</a>");
           infoWin.open(map, marker);
         })
         return marker;
       });
+        google.maps.event.addListener(map, 'click', function(event) {
+          
+        });
       var markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
     }
     
@@ -66,4 +100,5 @@ javascript:
       strreplace(); 
       docload();
     });
+    google.maps.event.addDomListener(window, 'load', initialize);
 
