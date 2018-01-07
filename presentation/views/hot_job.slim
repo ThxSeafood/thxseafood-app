@@ -1,3 +1,15 @@
+doctype html
+html lang="en" 
+head
+  meta charset="utf-8" /
+  meta content="IE=edge" http-equiv="X-UA-Compatible" /
+  meta content="width=device-width, initial-scale=1" name="viewport" /
+  meta content="" name="description" /
+  meta content="" name="author" /
+  title ThxSeafood Admin
+  link[rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"]
+  link[rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"]
+  script[src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"]
 .container
 - if result.processing?
   .progress
@@ -16,26 +28,47 @@
       var progress = bar.getAttribute("style")
       var currentProgress = reg.exec(progress)[1]
       
-      if (isNaN(message.percent)) {
+      if (isNaN(message)) {
         bar.setAttribute("style", "width:100%")
         bar.setAttribute("class", "progress-bar progress-bar-danger progress-bar-striped")
-        bar.innerHTML = message.percent
+        bar.innerHTML = message
       } else {
-        if (parseInt(message.percent) > parseInt(currentProgress)) {
+        if (parseInt(message) > parseInt(currentProgress)) {
           // Set the progress bar and percentage
-          bar.setAttribute("aria-valuenow", message.percent)
-          bar.setAttribute("style", "width:"+message.percent+"%")
-          bar.innerHTML = message.percent+"%"
+          bar.setAttribute("aria-valuenow", message)
+          bar.setAttribute("style", "width:"+message+"%")
+          bar.innerHTML = message+"%"
 
           // Reoad page at 100%
-          if (message.percent == "100") {
+          if (message == "100") {
             setTimeout(function () {
-              window.location = window.location.href.split('?')[0]
-            }, 1000);
+              location.reload();
+            }, 500);
           }
         }
       }
     });
 - else
-  h2
-    = "ok"
+  .row  
+    h1
+      = "TOP HOT!"
+  .row
+    .col-sm-10 
+      table class="table" id="jobs_table" height="50%"
+        thead
+          tr
+            th CITY
+            th JOB
+            th COMPANY
+        tbody
+          - city_hot_jobs.taipei.each do |job|              
+            tr              
+              td
+                = job.city
+              td
+                = job.name
+              td
+                a href = job.link
+                  span #{job.company}/  
+            end                
+          end  

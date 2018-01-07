@@ -9,7 +9,7 @@ test:
   APP_URL: http://localhost:9000
 
 production:
-  API_HOST: https://thx-seafood.herokuapp.com/
+  API_HOST: https://thx-seafood.herokuapp.com
   API_VER: api/v0.1
   # APP_URL: 還沒deploy
 

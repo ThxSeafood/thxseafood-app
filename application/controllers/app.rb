@@ -80,8 +80,19 @@ module ThxSeafood
           if result.processing?
             view_info[:processing] = Views::ProcessingView.new(result)
             flash.now[:notice] = 'Hot jobs being processed'
-          end
+          else
+            city_hot_jobs = CityHotJobsRepresenter.new(OpenStruct.new).from_json result.message
+            city_hot_jobs_view = Views::CityHotJobsView.new(city_hot_jobs)
+            
+            view_info[:city_hot_jobs] = city_hot_jobs_view
 
+            # city_hot_jobs_json = CityHotJobsRepresenter.new(city_hot_jobs).to_json
+            # projects = Views::JsonAllProjects.new(city_hot_jobs_json)
+            
+            # view_info[:projects] = projects
+            # puts projects.class
+            
+          end
           view 'hot_job', locals: view_info
 
         end
